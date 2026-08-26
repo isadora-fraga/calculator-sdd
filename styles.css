@@ -1,4 +1,16 @@
-/* styles.css - Reset básico e arquivo inicial. A estilização do grid será feita na próxima etapa. */
+/* styles.css - Task 3: Estilização e Layout com CSS Grid */
+:root {
+    --bg-color: #f4f4f9;
+    --calc-bg: #333333;
+    --display-bg: #222222;
+    --display-color: #ffffff;
+    --btn-num-bg: #eeeeee;
+    --btn-num-color: #333333;
+    --btn-op-bg: #ff9500;
+    --btn-op-color: #ffffff;
+    --btn-action-bg: #a6a6a6;
+    --btn-action-color: #000000;
+}
 
 * {
     box-sizing: border-box;
@@ -7,10 +19,69 @@
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.calculator {
+    background-color: var(--calc-bg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 320px; 
+}
+
+.display {
+    background-color: var(--display-bg);
+    color: var(--display-color);
+    font-size: 2.5rem;
+    text-align: right;
+    padding: 20px;
+    word-wrap: break-word;
+    min-height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.display.error-text {
+    font-size: 1.5rem;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-color: #222;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 20px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s, filter 0.1s;
+}
+
+.btn-number { background-color: var(--btn-num-bg); color: var(--btn-num-color); }
+.btn-operator { background-color: var(--btn-op-bg); color: var(--btn-op-color); }
+.btn-action { background-color: var(--btn-action-bg); color: var(--btn-action-color); }
+
+.btn-zero { grid-column: span 2; }
+.btn-clear { grid-column: span 2; }
+
+.btn:hover { filter: brightness(0.9); }
+.btn:active { filter: brightness(0.7); }
+
+@media (min-width: 480px) {
+    .calculator { max-width: 400px; }
+    .display { font-size: 3rem; padding: 30px 20px; min-height: 100px; }
+    .display.error-text { font-size: 1.8rem; }
+    .btn { font-size: 1.75rem; padding: 25px 20px; }
 }
